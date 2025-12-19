@@ -1026,8 +1026,8 @@ body::-webkit-scrollbar {
 /* Dots network */
 .dots-network {
   position: relative;
-  width: 350px;
-  height: 350px;
+  width: 300px;
+  height: 300px;
   margin: 0 auto;
 }
 
@@ -1039,7 +1039,6 @@ body::-webkit-scrollbar {
   background: #d8d8d8;
   opacity: 0;
   transform: scale(0);
-  /* Initial appear animation */
   animation: appear 0.5s forwards;
 }
 
@@ -1053,25 +1052,38 @@ body::-webkit-scrollbar {
 }
 
 /* Surrounding dots */
+/* Surrounding dots - pushed further out */
 .dot1 {
-  top: 20%;
+  top: 10%;
+  /* was 20% */
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   animation: appear 0.5s forwards, pulse 1.5s ease-in-out 1.1s infinite;
 }
 
 .dot2 {
-  top: 70%;
-  left: 20%;
+  top: 82%; /* was 80%, move 2% downward */
+  left: 10%;
   transform: translate(-50%, -50%) scale(0);
   animation: appear 0.5s forwards, pulse 1.5s ease-in-out 1.5s infinite;
 }
 
+
 .dot3 {
-  top: 78%;
-  left: 80%;
+  top: 85%;
+  /* was 78% */
+  left: 90%;
+  /* was 80% */
   transform: translate(-50%, -50%) scale(0);
   animation: appear 0.5s forwards, pulse 1.5s ease-in-out 1.9s infinite;
+}
+
+
+
+/* Remove previous .line1, .line2, .line3 CSS */
+.dots-network svg line {
+  stroke: #d8d8d8;
+  stroke-width: 2;
 }
 
 /* Appear animation */
@@ -2213,10 +2225,23 @@ body::-webkit-scrollbar {
 }
 
 .case-hero-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 3rem;
+    display: flex;
+    gap: 3rem;
+}
+
+/* Left slider container */
+.case-hero-left-slide {
+    position: absolute;
+    top: 0;
+    left: 100%; /* start off-screen right */
+    width: 100%;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.case-hero-left-slide.active {
+    left: 0;
+    opacity: 1;
 }
 
 .case-hero-left {
@@ -2264,27 +2289,22 @@ body::-webkit-scrollbar {
 }
 
 .case-hero-slider {
-  display: flex;
-  margin-top: 3rem;
-  gap: 10px;
-  position: relative;
-  /* optional if you want to position buttons absolutely later */
+    display: flex;
+    gap: 10px;
+    margin-top: 3rem;
 }
 
 .case-hero-nav {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  /* make it circular */
-  border: 2px solid #A1D2A0;
-  /* circle border */
-  background-color: transparent;
-  /* no fill */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid #A1D2A0;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
 }
 
 /* Optional: change colors individually */
@@ -3336,6 +3356,7 @@ body::-webkit-scrollbar {
   /* remove extra white space */
 }
 
+
 .brand-expert-container {
   max-width: 1120px;
   margin: 0 auto;
@@ -3610,7 +3631,6 @@ body::-webkit-scrollbar {
 .site-footer {
   background-color: #f4faf5;
   border-top: 1px solid #dde5db;
-  margin-top: 5rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #1a1f1a;
 }
@@ -4205,9 +4225,8 @@ body::-webkit-scrollbar {
 
 
   .hero-section .hero-image-container {
-    min-height: 70vh;
     /* container height */
-    height: 70vh;
+    height: 100vh;
     /* make it fill viewport height */
     position: relative;
     overflow: hidden;
@@ -4350,7 +4369,7 @@ body::-webkit-scrollbar {
   }
 
   .features-hero-rating {
-   display: none; 
+    display: none;
   }
 
   .footer-inner {
@@ -4751,7 +4770,7 @@ body::-webkit-scrollbar {
     /* space between text and middle block */
   }
 
-  
+
   /* Right rating / reviews block */
   .features-hero-banner .features-hero-right {
     display: flex;

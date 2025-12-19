@@ -210,8 +210,53 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
+    const gapOuter = 45; // distance from outer dot
+    const gapCenter = 45; // distance from central dot
 
+    function setLine(lineId, centralDot, outerDot) {
+        const line = document.getElementById(lineId);
 
+        // Get dot centers
+        const cRect = centralDot.getBoundingClientRect();
+        const oRect = outerDot.getBoundingClientRect();
+        const parentRect = centralDot.parentElement.getBoundingClientRect();
 
+        const cX = cRect.left + cRect.width / 2 - parentRect.left;
+        const cY = cRect.top + cRect.height / 2 - parentRect.top;
+        const oX = oRect.left + oRect.width / 2 - parentRect.left;
+        const oY = oRect.top + oRect.height / 2 - parentRect.top;
+
+        // Calculate vector from center to outer dot
+        const dx = oX - cX;
+        const dy = oY - cY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // Shorten line from both ends
+        const factorStart = gapCenter / distance;
+        const factorEnd = (distance - gapOuter) / distance;
+
+        const newStartX = cX + dx * factorStart;
+        const newStartY = cY + dy * factorStart;
+        const newEndX = cX + dx * factorEnd;
+        const newEndY = cY + dy * factorEnd;
+
+        line.setAttribute('x1', newStartX);
+        line.setAttribute('y1', newStartY);
+        line.setAttribute('x2', newEndX);
+        line.setAttribute('y2', newEndY);
+    }
+
+    // Select dots
+    const central = document.querySelector('.dot.central');
+    const dot1 = document.querySelector('.dot.dot1');
+    const dot2 = document.querySelector('.dot.dot2');
+    const dot3 = document.querySelector('.dot.dot3');
+
+    dot2.style.top = (dot2.offsetTop + 10) + 'px';
+
+    // Set lines
+    setLine('line1', central, dot1);
+    setLine('line2', central, dot2);
+    setLine('line3', central, dot3);
 
 });
