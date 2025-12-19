@@ -4685,6 +4685,7 @@ body::-webkit-scrollbar {
     flex-direction: row;
     /* stack stats vertically */
     align-items: center;
+    gap: 0.1rem;
     width: 100%;
   }
 
